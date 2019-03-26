@@ -1,5 +1,15 @@
+#from __future__ import print_function
+#import sys
+from ortools.constraint_solver import pywrapcp
+from os import abort
 
- dim = 9
+
+def TD3sudoku():
+
+    solver = pywrapcp.Solver('résolution sudoku');
+ 
+ 
+   dim = 9
 
 
     valeurspossibles = list(range(1,9) #les valeurs pouvant etre prises sont entre 1 et 9
