@@ -1,10 +1,17 @@
 
-from __future__ import print_function
-import sys
+#from __future__ import print_function
+#import sys
 from ortools.constraint_solver import pywrapcp
+from os import abort
 
-def solve_sudoku():
+def TD3sudoku():
 
+    solver = pywrapcp.Solver('résolution sudoku');
+
+    dim = 9
+    
+    
+    
     # Nous créons les contraintes 
     #pas 2 fois le meme nombre sur une meme ligne
     for l in range(dim):
@@ -16,7 +23,7 @@ def solve_sudoku():
         for n in range(dim):
             for m in range(n+1,dim):
                 solver.Add(grille[n][c] != grille[m][c])
-    #pas 2 fois le meme nombre dans une meme case
+    #pas 2 fois le meme nombre dans la meme zone
     for l0 in range(0,dim,dim_case[0]):
         for c0 in range(0,dim,dim_case[1]):
             for n in range(dim):
