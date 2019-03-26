@@ -50,7 +50,7 @@ def print_solution(solver, G):
 
   while solver.NextSolution():
     count += 1
-    afficher_sudoku(G)
+    TD3sudoku(G)
   print("\nNumber of solutions found:", count)
 
 if __name__ == "__main__":
