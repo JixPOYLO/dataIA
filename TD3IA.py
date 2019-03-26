@@ -2,7 +2,7 @@
  dim = 9
 
 
-    valeurspossibles = list(range(1,10) #les valeurs pouvant etre prises sont entre 1 et 9
+    valeurspossibles = list(range(1,9) #les valeurs pouvant etre prises sont entre 1 et 9
     ligne = valeurspossibles
     colonne = valeurspossibles
     zone = valeurspossibles                       
