@@ -3,6 +3,7 @@ from __future__ import print_function
 import sys
 from ortools.constraint_solver import pywrapcp
 
+def solve_sudoku():
 
     # Nous créons les contraintes 
     #pas 2 fois le meme nombre sur une meme ligne
