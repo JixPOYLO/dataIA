@@ -28,11 +28,11 @@ def sudoku():
     for i in region: 
         for j in region:
             etuderegion = []
-            for a in region:
+            for a in region: #dans le but de parcourir la region etudiee
                 for b in region:
                     etuderegion.append(grille[(3*i + a, 3*i + b)]) #on utilise append pour ajouter un element a la fin de notre liste
 
-            model.AddAllDifferent(etuderegion) #toutes les valeurs sont differentes dans la region etudiée
+            model.AddAllDifferent(etuderegion) #toutes les valeurs sont differentes dans la region etudiee
 
             
     #initialisation par rapport a la grille sujet que l on souhaite resoudre 
