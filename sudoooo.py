@@ -33,54 +33,47 @@ def solve_sudoku():
     """Solves the sudoku problem with the CP-SAT solver."""
     # Create the model.
     model = cp_model.CpModel()
+    
+    ligne = list(range(0, 9)) # car nombre de lignes = 9 donc les valeurs des i sont 0<=i<9
+    region = list(range(0, 3)) # car nombre de cases par regions = 3*3 
 
-    cell_size = 3
-    line_size = cell_size**2
-    line = list(range(0, line_size))
-    cell = list(range(0, cell_size))
 
-    initial_grid = [[0, 6, 0, 0, 5, 0, 0, 2, 0], [0, 0, 0, 3, 0, 0, 0, 9, 0],
-                    [7, 0, 0, 6, 0, 0, 0, 1, 0], [0, 0, 6, 0, 3, 0, 4, 0, 0], [
-                        0, 0, 4, 0, 7, 0, 1, 0, 0
-                    ], [0, 0, 5, 0, 9, 0, 8, 0, 0], [0, 4, 0, 0, 0, 1, 0, 0, 6],
-                    [0, 3, 0, 0, 0, 8, 0, 0, 0], [0, 2, 0, 0, 4, 0, 0, 5, 0]]
+    grille = {}
+    for i in ligne:     #on parcourt toutes les lignes
+        for j in ligne: #on parcourt toutes les colonnes 
+            grille[(i, j)] = model.NewIntVar(1, 9, 'grille %i %i' % (i, j))
 
-    grid = {}
-    for i in line:
+#definition des contraintes : 
+        for i in line: 
+        model.AddAllDifferent([grille[(i, j)] for j in line]) #toutes les valeurs sont differentes sur une ligne
         for j in line:
-            grid[(i, j)] = model.NewIntVar(1, line_size, 'grid %i %i' % (i, j))
+        model.AddAllDifferent([grille[(i, j)] for i in line]) #toutes les valeurs sont differentes sur une colonne
 
-    # AllDifferent on rows.
-    for i in line:
-        model.AddAllDifferent([grid[(i, j)] for j in line])
+        for i in region: 
+        for j in region:
+            etuderegion = []
+            for a in region:
+            for b in region:
+                etuderegion.append(grille[(3*i + a, 3*i + b)]) #on utilise append pour ajouter un element a la fin de notre liste
 
-    # AllDifferent on columns.
-    for j in line:
-        model.AddAllDifferent([grid[(i, j)] for i in line])
+            model.AddAllDifferent(etuderegion) #toutes les valeurs sont differentes dans une region
 
-    # AllDifferent on cells.
-    for i in cell:
-        for j in cell:
-            one_cell = []
-            for di in cell:
-                for dj in cell:
-                    one_cell.append(grid[(i * cell_size + di,
-                                          j * cell_size + dj)])
+            
+    # initialisation par rapport a la grille sujet que l'on souhaite resoudre      
+    sujet = [[0, 6, 0, 0, 5, 0, 0, 2, 0], [0, 0, 0, 3, 0, 0, 0, 9, 0],[7, 0, 0, 6, 0, 0, 0, 1, 0], 
+             [0, 0, 6, 0, 3, 0, 4, 0, 0], [0, 0, 4, 0, 7, 0, 1, 0, 0], [0, 0, 5, 0, 9, 0, 8, 0, 0], 
+             [0, 4, 0, 0, 0, 1, 0, 0, 6],[0, 3, 0, 0, 0, 8, 0, 0, 0], [0, 2, 0, 0, 4, 0, 0, 5, 0]]
+    for i in ligne:
+     for j in ligne:
+          if sujet[i][j]:
+                model.Add(grille[(i, j)] == sujet[i][j])
 
-            model.AddAllDifferent(one_cell)
-
-    # Initial values.
-    for i in line:
-        for j in line:
-            if initial_grid[i][j]:
-                model.Add(grid[(i, j)] == initial_grid[i][j])
-
-    # Solve and print out the solution.
+    # Resolution et sortie de la solution dans la console
     solver = cp_model.CpSolver()
-    status = solver.Solve(model)
-    if status == cp_model.FEASIBLE:
-        for i in line:
-            print([int(solver.Value(grid[(i, j)])) for j in line])
+    etat = solver.Solve(model)
+    if etat == cp_model.FEASIBLE:    #FEASIBLE = resolution possible mais resultat pas forcement optimal
+        for i in ligne:
+            print([int(solver.Value(grille[(i, j)])) for j in ligne])
 
 
 solve_sudoku()
