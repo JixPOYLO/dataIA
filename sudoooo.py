@@ -1,28 +1,4 @@
-from __future__ import print_function
-import sys
-from ortools.constraint_solver import pywrapcp
-
-#definition de la taille de la grille
-def main(board_size):
-#creation du solver
-solver = pywrapcp.Solver("sudoku")
-    
-#creation des vairbales
-
-
-#probleme avec une grille 9x9 
-board_size = 9
-
-if __name__ == "__main__":
-  if len(sys.argv) > 1:
-    board_size = int(sys.argv[1])
-  main(board_size)
-
-
-
-
-
-"""This model implements a sudoku solver."""
+#POYLO-MOUNOT
 
 from __future__ import print_function
 
