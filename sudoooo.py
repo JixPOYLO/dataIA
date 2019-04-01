@@ -21,9 +21,9 @@ def sudoku():
 
 #definition des contraintes : 
         for i in line: 
-        model.AddAllDifferent([grille[(i, j)] for j in line]) #toutes les valeurs sont differentes sur une ligne
+        model.AddAllDifferent([grille[(i, j)] for j in ligne]) #toutes les valeurs sont differentes sur une ligne
         for j in line:
-        model.AddAllDifferent([grille[(i, j)] for i in line]) #toutes les valeurs sont differentes sur une colonne
+        model.AddAllDifferent([grille[(i, j)] for i in ligne]) #toutes les valeurs sont differentes sur une colonne
 
         for i in region: 
         for j in region:
