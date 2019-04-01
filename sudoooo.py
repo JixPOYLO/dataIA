@@ -20,9 +20,9 @@ def sudoku():
             grille[(i, j)] = model.NewIntVar(1, 9, 'grille %i %i' % (i, j))
 
 #definition des contraintes : 
-        for i in line: 
+        for i in ligne: 
         model.AddAllDifferent([grille[(i, j)] for j in ligne]) #toutes les valeurs sont differentes sur une ligne
-        for j in line:
+        for j in ligne:
         model.AddAllDifferent([grille[(i, j)] for i in ligne]) #toutes les valeurs sont differentes sur une colonne
 
         for i in region: 
