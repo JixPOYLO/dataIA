@@ -13,7 +13,10 @@ solver = pywrapcp.Solver("sudoku")
 #probleme avec une grille 9x9 
 board_size = 9
 
-
+if __name__ == "__main__":
+  if len(sys.argv) > 1:
+    board_size = int(sys.argv[1])
+  main(board_size)
 
 
 
