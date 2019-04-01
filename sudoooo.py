@@ -46,8 +46,8 @@ def sudoku():
 
     # Resolution et sortie de la solution dans la console
     solver = cp_model.CpSolver()
-    etat = solver.Solve(model)
-    if etat == cp_model.FEASIBLE:    #FEASIBLE = resolution possible mais resultat pas forcement optimal
+    status = solver.Solve(model)
+    if status == cp_model.FEASIBLE:    #FEASIBLE = resolution possible mais resultat pas forcement optimal
         for i in ligne:
             print([int(solver.Value(grille[(i, j)])) for j in ligne])
 
