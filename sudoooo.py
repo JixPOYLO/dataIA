@@ -20,19 +20,19 @@ def sudoku():
             grille[(i, j)] = model.NewIntVar(1, 9, 'grille %i %i' % (i, j))
 
 #definition des contraintes : 
-        for i in ligne: 
-        model.AddAllDifferent([grille[(i, j)] for j in ligne]) #toutes les valeurs sont differentes sur une ligne
-        for j in ligne:
-        model.AddAllDifferent([grille[(i, j)] for i in ligne]) #toutes les valeurs sont differentes sur une colonne
+for i in ligne: 
+model.AddAllDifferent([grille[(i, j)] for j in ligne]) #toutes les valeurs sont differentes sur une ligne
+for j in ligne:
+model.AddAllDifferent([grille[(i, j)] for i in ligne]) #toutes les valeurs sont differentes sur une colonne
 
-        for i in region: 
-        for j in region:
-            etuderegion = []
-            for a in region:
-            for b in region:
-                etuderegion.append(grille[(3*i + a, 3*i + b)]) #on utilise append pour ajouter un element a la fin de notre liste
+for i in region: 
+       for j in region:
+          etuderegion = []
+           for a in region:
+           for b in region:
+               etuderegion.append(grille[(3*i + a, 3*i + b)]) #on utilise append pour ajouter un element a la fin de notre liste
 
-            model.AddAllDifferent(etuderegion) #toutes les valeurs sont differentes dans une region
+           model.AddAllDifferent(etuderegion) #toutes les valeurs sont differentes dans une region
 
             
     # initialisation par rapport a la grille sujet que l'on souhaite resoudre      
