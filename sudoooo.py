@@ -5,8 +5,8 @@ from __future__ import print_function
 from ortools.sat.python import cp_model
 
 
-def solve_sudoku():
-    """Solves the sudoku problem with the CP-SAT solver."""
+def sudoku():
+  
     # Create the model.
     model = cp_model.CpModel()
     
@@ -52,4 +52,4 @@ def solve_sudoku():
             print([int(solver.Value(grille[(i, j)])) for j in ligne])
 
 
-solve_sudoku()
+sudoku()
