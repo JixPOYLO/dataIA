@@ -1,16 +1,15 @@
-#POYLO-MOUNOT
+#Jean-Alix POYLO - Louis MOUNOT
+#Resolution sudoku 
 
 from _future_ import print_function
-
 from ortools.sat.python import cp_model
-
 
 def sudoku():
   
 # creation de notre modele de sudoku
     model = cp_model.CpModel()
     ligne = list(range(0, 9)) # car nombre de lignes = 9 donc les valeurs des i sont 0<=i<9
-    region = list(range(0, 3)) # car nombre de cases par regions = 3*3 
+    region = list(range(0, 3)) # car une region sera assimilee a une grille de 3 lignes et 3 colonnes
 
     grille = {}         #declaration de notre grille 
     for i in ligne:     #on parcourt toutes les lignes
