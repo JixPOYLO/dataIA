@@ -14,7 +14,7 @@ def sudoku():
     grille = {}         #declaration de notre grille 
     for i in ligne:     #on parcourt toutes les lignes
         for j in ligne: #on parcourt toutes les colonnes 
-            grille[(i, j)] = model.NewIntVar(1, 9, 'grille %i %i' % (i, j))   #
+            grille[(i, j)] = model.NewIntVar(1, 9, 'grille %i %i' % (i, j))   #chaine de caracteres dynamique avec des parametres
 
 # definition des contraintes : 
 
